@@ -1,0 +1,101 @@
+## 1. Download bigwig files
+
+wget -i urls_H3K27ac.txt
+
+## 2. Convert to wig
+
+./bigWigtoWig E029-H3K27ac.fc.signal.bigwig wigfiles/E029-H3K27ac.fc.signal.wig
+
+./bigWigtoWig E032-H3K27ac.fc.signal.bigwig wigfiles/E032-H3K27ac.fc.signal.wig
+
+./bigWigtoWig E037-H3K27ac.fc.signal.bigwig wigfiles/E037-H3K27ac.fc.signal.wig
+
+./bigWigtoWig E038-H3K27ac.fc.signal.bigwig wigfiles/E038-H3K27ac.fc.signal.wig
+
+./bigWigtoWig E039-H3K27ac.fc.signal.bigwig wigfiles/E039-H3K27ac.fc.signal.wig
+
+./bigWigtoWig E040-H3K27ac.fc.signal.bigwig wigfiles/E040-H3K27ac.fc.signal.wig
+
+./bigWigtoWig E043-H3K27ac.fc.signal.bigwig wigfiles/E043-H3K27ac.fc.signal.wig
+
+./bigWigtoWig E044-H3K27ac.fc.signal.bigwig wigfiles/E044-H3K27ac.fc.signal.wig
+
+./bigWigtoWig E045-H3K27ac.fc.signal.bigwig wigfiles/E045-H3K27ac.fc.signal.wig
+
+./bigWigtoWig E046-H3K27ac.fc.signal.bigwig wigfiles/E046-H3K27ac.fc.signal.wig
+
+./bigWigtoWig E047-H3K27ac.fc.signal.bigwig wigfiles/E047-H3K27ac.fc.signal.wig
+
+./bigWigtoWig E048-H3K27ac.fc.signal.bigwig wigfiles/E048-H3K27ac.fc.signal.wig
+
+./bigWigtoWig E096-H3K27ac.fc.signal.bigwig wigfiles/E096-H3K27ac.fc.signal.wig
+
+#!/bin/bash
+
+for f in *.bigwig
+do
+  echo "Processing ${f} file..."
+  ./bigWigtoWig ${f} wigfiles/${f}
+done
+
+
+## 3. Convert to bed
+
+wig2bed < ../wigfiles/E029-H3K27ac.fc.signal.wig > ../bedfiles/E029-H3K27ac.fc.signal.bed --zero-indexed
+
+wig2bed < ../wigfiles/E032-H3K27ac.fc.signal.wig > ../bedfiles/E032-H3K27ac.fc.signal.bed --zero-indexed
+
+wig2bed < ../wigfiles/E037-H3K27ac.fc.signal.wig > ../bedfiles/E037-H3K27ac.fc.signal.bed --zero-indexed
+
+wig2bed < ../wigfiles/E038-H3K27ac.fc.signal.wig > ../bedfiles/E038-H3K27ac.fc.signal.bed --zero-indexed
+
+wig2bed < ../wigfiles/E039-H3K27ac.fc.signal.wig > ../bedfiles/E039-H3K27ac.fc.signal.bed --zero-indexed
+
+wig2bed < ../wigfiles/E040-H3K27ac.fc.signal.wig > ../bedfiles/E040-H3K27ac.fc.signal.bed --zero-indexed
+
+wig2bed < ../wigfiles/E043-H3K27ac.fc.signal.wig > ../bedfiles/E043-H3K27ac.fc.signal.bed --zero-indexed
+
+wig2bed < ../wigfiles/E044-H3K27ac.fc.signal.wig > ../bedfiles/E044-H3K27ac.fc.signal.bed --zero-indexed
+
+wig2bed < ../wigfiles/E045-H3K27ac.fc.signal.wig > ../bedfiles/E045-H3K27ac.fc.signal.bed --zero-indexed
+
+wig2bed < ../wigfiles/E046-H3K27ac.fc.signal.wig > ../bedfiles/E046-H3K27ac.fc.signal.bed --zero-indexed
+
+wig2bed < ../wigfiles/E047-H3K27ac.fc.signal.wig > ../bedfiles/E047-H3K27ac.fc.signal.bed --zero-indexed
+
+wig2bed < ../wigfiles/E048-H3K27ac.fc.signal.wig > ../bedfiles/E048-H3K27ac.fc.signal.bed --zero-indexed
+
+wig2bed < ../wigfiles/E096-H3K27ac.fc.signal.wig > ../bedfiles/E096-H3K27ac.fc.signal.bed --zero-indexed
+
+#!/bin/bash
+
+for f in wigfiles/*.wig
+do
+  echo "Processing ${f} file..."
+  bin/wig2bed < ${f} > bedfiles/${f} --zero_indexed
+done
+
+## 4. Use bedtools to map Asthma SNPs
+
+module load bedtools/2.20.1
+
+Rscript make_asthma_snps.R
+
+bedtools intersect -a asthma_snps.bed -b bedfiles/E029-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E029-H3K27ac.fc.signal
+bedtools intersect -a asthma_snps.bed -b bedfiles/E032-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E032-H3K27ac.fc.signal
+bedtools intersect -a asthma_snps.bed -b bedfiles/E037-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E037-H3K27ac.fc.signal
+bedtools intersect -a asthma_snps.bed -b bedfiles/E038-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E038-H3K27ac.fc.signal
+bedtools intersect -a asthma_snps.bed -b bedfiles/E039-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E039-H3K27ac.fc.signal
+bedtools intersect -a asthma_snps.bed -b bedfiles/E040-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E040-H3K27ac.fc.signal
+bedtools intersect -a asthma_snps.bed -b bedfiles/E043-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E043-H3K27ac.fc.signal
+bedtools intersect -a asthma_snps.bed -b bedfiles/E044-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E044-H3K27ac.fc.signal
+bedtools intersect -a asthma_snps.bed -b bedfiles/E045-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E045-H3K27ac.fc.signal
+bedtools intersect -a asthma_snps.bed -b bedfiles/E046-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E046-H3K27ac.fc.signal
+bedtools intersect -a asthma_snps.bed -b bedfiles/E047-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E047-H3K27ac.fc.signal
+bedtools intersect -a asthma_snps.bed -b bedfiles/E048-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E048-H3K27ac.fc.signal
+bedtools intersect -a asthma_snps.bed -b bedfiles/E096-H3K27ac.fc.signal.bed -wb > asthmasnp_match/E096-H3K27ac.fc.signal
+
+### collate results into single data frame
+
+Rscript collate_res.R
+

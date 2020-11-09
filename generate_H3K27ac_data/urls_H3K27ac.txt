@@ -1,0 +1,13 @@
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E045-H3K27ac.fc.signal.bigwig
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E044-H3K27ac.fc.signal.bigwig
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E043-H3K27ac.fc.signal.bigwig
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E039-H3K27ac.fc.signal.bigwig
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E040-H3K27ac.fc.signal.bigwig
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E037-H3K27ac.fc.signal.bigwig
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E048-H3K27ac.fc.signal.bigwig
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E038-H3K27ac.fc.signal.bigwig
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E047-H3K27ac.fc.signal.bigwig
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E029-H3K27ac.fc.signal.bigwig
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E032-H3K27ac.fc.signal.bigwig
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E046-H3K27ac.fc.signal.bigwig
+https://egg2.wustl.edu/roadmap/data/byFileType/signal/consolidated/macs2signal/foldChange/E096-H3K27ac.fc.signal.bigwig
