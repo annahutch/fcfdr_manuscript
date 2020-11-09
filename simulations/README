@@ -1,0 +1,21 @@
+## description of files required to reproduce simulation analysis
+
+# simulatedGWAS/ : 	A directory containing 24 .RDS files for the 24 LD blocks on chromosome 22 (found using LD detect method)
+				Each file contains a list of 102 data.frames containing results from 102 simulated GWASs
+				Each data.frame has columns: 
+				z (simulated z score), 
+				p (simulated p-value), 
+				CV (binary indicator of causal variant), 
+				pos (genomic position of SNP), 
+				block (LD block), 
+				r2_CVrow* (r^2 values of the SNP with CV on row *), 
+				max_r2 (the maximum r^2 of the SNP with any of the CVs in this LD block).
+				
+				(the source file to make these .RDS files is omitted due to the requirement of 
+				very large haplotype files. They can be made available upon request)
+				
+# simweights.RDS: 	An .RDS file containing LDAK weights for the 80356 SNPs on chromosome 22
+
+# sim*/: 			Directories containing the code to simulate results from simulation scenarios A-E
+
+# figures/: 			Directory containing code to reproduce Figure 1, Figure 2 and Figure 3 from the main manuscript
