@@ -3,7 +3,7 @@ Repo to reproduce results from flexible cFDR manuscript
 
 ## simulations/
 
-The simulations/ directory contains code to reproduce the simulation analysis, including code to generate Figure 1, Figure 2 and Figure 3.  
+The simulations/ directory contains code to reproduce the simulation analysis, including code to generate Figure 1 and Figure 2.  
 Please see seperate README file in this directory for further details. 
 
 ## GenoCanyon_analysis/
