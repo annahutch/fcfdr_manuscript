@@ -18,4 +18,4 @@
 
 # sim*/: 			Directories containing the code to simulate results from simulation scenarios A-E
 
-# figures/: 			Directory containing code to reproduce Figure 1, Figure 2 and Figure 3 from the main manuscript
+# figures/: 			Directory containing code to reproduce Figure 1 and Figure 2 from the main manuscript
