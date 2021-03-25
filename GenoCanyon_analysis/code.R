@@ -11,6 +11,7 @@ library(bigsplines)
 library(locfdr)
 library(fcfdr)
 library(IHW)
+library(swfdr)
 
 df <- readRDS("asthma_p.RDS") # data.frame of rsID (SNPID) and asthma GWAS p-values (european_ancestry_pval_rand) for 1968651 SNPs in asthma analysis
 ind_snps <- readRDS("ind_snps.RDS") # vector of rsIDs for the independent subset of SNPs
@@ -25,9 +26,13 @@ fdr_thr <- 0.000148249 # FDR threshold corresponding to conventional genome-wide
 # run IHW
 ihw_res <- ihw(orig_p, q, alpha = fdr_thr)
 
+# run Boca and Leek's FDR regression
+BL_res <- lm_qvalue(orig_p, X = q)
+
 # run flexible cFDR
 cfdr_res <- flexible_cfdr(p = orig_p, q, indep_index)
 
 saveRDS(ihw_res, "GC_IHW_res.RDS")
+saveRDS(BL_res, "GC_BL_res.RDS")
 saveRDS(cfdr_res, "GC_func_cFDR_res.RDS")
 
