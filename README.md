@@ -8,7 +8,7 @@ Please see seperate README file in this directory for further details.
 
 ## GenoCanyon_analysis/
 
-The GenoCanyon_analysis/ directory contains code to perform the IHW and flexible cFDR analysis leveraging GenoCanyon scores.  
+The GenoCanyon_analysis/ directory contains code to perform IHW, Boca and Leek's FDR regression and flexible cFDR analysis leveraging GenoCanyon scores.  
 Please see the GenoWAP software (https://github.com/rlpowles/GenoWAP-V1.2) for instructions to run GenoWAP. 
 
 ## generate_H3K27ac_data/
