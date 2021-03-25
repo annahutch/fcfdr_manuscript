@@ -91,10 +91,42 @@ df$Iteration[which(df$Iteration==6)] <- 5
 
 df$Iteration <- as.factor(df$Iteration)
 
-right <- ggplot(df, aes(x = Iteration, y = Specificity)) + geom_point(stat = "summary", fun = "mean", position = position_dodge(0.8))+ 
-  geom_errorbar(stat="summary", fun.data="mean_se", fun.args = list(mult = 1), position = position_dodge(0.8), width = 0.4) + theme_cowplot(12) + background_grid(major = "xy", minor = "none") + geom_hline(yintercept =  1-(5*10^-6), linetype = "dashed")+ theme(panel.spacing = unit(1, "lines"))+ theme(text = element_text(size = 10), axis.title = element_text(size = 11))
+mid <- ggplot(df, aes(x = Iteration, y = Specificity)) + geom_point(stat = "summary", fun = "mean", position = position_dodge(0.8))+
+geom_errorbar(stat="summary", fun.data="mean_se", fun.args = list(mult = 1), position = position_dodge(0.8), width = 0.4) + theme_cowplot(12) + background_grid(major = "xy", minor = "none") + theme(panel.spacing = unit(1, "lines"))+ theme(text = element_text(size = 10), axis.title = element_text(size = 11))
 
-p = plot_grid(left + theme(legend.position = "none"), right, nrow = 1, labels = c("A","B"))
+###########################
+
+fdr_tmp <- lapply(out_sameq, function(x){
+  
+  fdr_func <- vector()
+  
+  for(i in 1:6){
+    fdr_func[i] <- length(which(x$noassoc_0.01==1 & x[,6+i]<=0.05))/length(which(x[,6+i]<=0.05))
+  }
+  
+  list(fdr_func)
+})
+
+fdr_func_tmp <- lapply(fdr_tmp, '[[', 1)
+fdr_func_final <- data.frame(do.call(rbind, fdr_func_tmp))
+
+fdr_func_m <- melt(fdr_func_final)
+
+df <- data.frame(Iteration = c(fdr_func_m$variable), FDR = c(fdr_func_m$value), r2 = c(rep(0.01, times = length(fdr_func_m$variable))))
+
+df$Iteration[which(df$Iteration==1)] <- 0
+df$Iteration[which(df$Iteration==2)] <- 1
+df$Iteration[which(df$Iteration==3)] <- 2
+df$Iteration[which(df$Iteration==4)] <- 3
+df$Iteration[which(df$Iteration==5)] <- 4
+df$Iteration[which(df$Iteration==6)] <- 5
+
+df$Iteration <- as.factor(df$Iteration)
+
+right <- ggplot(df, aes(x = Iteration, y = FDR)) + geom_point(stat = "summary", fun = "mean", position = position_dodge(0.8))+
+  geom_errorbar(stat="summary", fun.data="mean_se", fun.args = list(mult = 1), position = position_dodge(0.8), width = 0.4) + theme_cowplot(12) + background_grid(major = "xy", minor = "none") + theme(panel.spacing = unit(1, "lines"))+ theme(text = element_text(size = 10), axis.title = element_text(size = 11))+ geom_hline(yintercept =  0.05, linetype = "dashed")
+
+p = plot_grid(left + theme(legend.position = "none"), middle + theme(legend.position = "none"), right, nrow = 1, labels = c("A","B","C"))
 
 ggsave("fig2.png", plot = p, dev = "png", width = 15, height = 10, units = "cm")
 
