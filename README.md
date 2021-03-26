@@ -17,9 +17,9 @@ The generate_H3K27ac_data/ directory contains code to download the raw H3K27ac f
 map the values to the SNPs in the asthma analysis and generate q1 and q2 (the auxiliary data vectors to iterate over using flexible cFDR). 
 See generate_H3K27ac_data/makeH3K27acdata_code for details. 
 
-## H3K27ac_cFDR/
+## H3K27ac_analysis/
 
-The H3K27ac_cFDR/ directory contains code to perform the flexible cFDR analysis leveraging H3K27ac fold change values.  
+The H3K27ac_analysis/ directory contains code to perform the flexible cFDR analysis and Boca and Leek's FDR regression leveraging H3K27ac fold change values.
 Please see the FINDOR software (https://github.com/gkichaev/FINDOR) for instructions to run FINDOR. 
 
 
