@@ -12,10 +12,10 @@ library(locfdr)
 library(data.table)
 library(fcfdr)
 
-df <- readRDS("../../asthma_p.RDS") # data.frame of rsIDs (SNPID) and asthma GWAS p-values (european_ancestry_pval_rand)
+df <- readRDS("../asthma_p.RDS") # data.frame of rsIDs (SNPID) and asthma GWAS p-values (european_ancestry_pval_rand)
 
 # independent subset of SNPs
-ind_snps <- readRDS("../../ind_snps.RDS") # names of SNPs in the independent subset of SNPs
+ind_snps <- readRDS("../ind_snps.RDS") # names of SNPs in the independent subset of SNPs
 indep_index <- na.omit(match(ind_snps, df$SNPID))
 orig_p <- df$european_ancestry_pval_rand
 
