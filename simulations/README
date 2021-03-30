@@ -19,3 +19,5 @@
 # sim*/: 			Directories containing the code to simulate results from simulation scenarios A-E
 
 # figures/: 			Directory containing code to reproduce Figure 1 and Figure 2 from the main manuscript
+
+## NOTE: for simulation B, different simulatedGWAS data sets were used to simulate related traits - these are available upon request
