@@ -187,7 +187,7 @@ length(data_relatedtrait)
 data_relatedtrait <- data_relatedtrait[1:100] # use 100 simulation results for figure
 
 # convert p values to adjusted p values (using BH)
-data_related_trait_qvals <- lapply(data_related_trait, function(x){
+data_related_trait_qvals <- lapply(data_relatedtrait, function(x){
   
   for(i in 1:6){
     x[,6+i] <- p.adjust(x[,6+i], method = "BH")
@@ -459,8 +459,8 @@ df$Iteration[which(df$Iteration==6)] <- 5
 
 df$Iteration <- as.factor(df$Iteration)
 
-Cright <- ggplot(df, aes(x = Iteration, y = FDR, col = Method)) + geom_point(stat = "summary", fun = "mean", position = position_dodge(0.8), size = 0.8)+
-  geom_errorbar(stat="summary", fun.data="mean_se", fun.args = list(mult = 1), position = position_dodge(0.8), width = 0.6) + theme_cowplot(12) + background_grid(major = "xy", minor = "none") + scale_colour_manual(values = c("orchid4","steelblue1"))+ geom_hline(yintercept =  0.05, linetype = "dashed") + theme(panel.spacing = unit(1, "lines")) + coord_cartesian(ylim = c(0, 0.05))+ theme(text = element_text(size = 10), axis.title = element_text(size = 11))+ scale_y_continuous(breaks = c(0, 0.05))
+Cright <- ggplot(df, aes(x = Iteration, y = FDR, col = Method)) + geom_point(stat = "summary", fun = "mean", size = 0.8)+
+  geom_errorbar(stat="summary", fun.data="mean_se", fun.args = list(mult = 1), width = 0.6) + theme_cowplot(12) + background_grid(major = "xy", minor = "none") + scale_colour_manual(values = c("orchid4","steelblue1"))+ geom_hline(yintercept =  0.05, linetype = "dashed") + theme(panel.spacing = unit(1, "lines")) + coord_cartesian(ylim = c(0, 0.05))+ theme(text = element_text(size = 10), axis.title = element_text(size = 11))+ scale_y_continuous(breaks = c(0, 0.05))
 
 C_final <- plot_grid(Cleft + theme(legend.position = "none"), Cmid + theme(legend.position = "none"), Cright + theme(legend.position = "none"), nrow = 1)
 
@@ -585,8 +585,8 @@ df$Iteration[which(df$Iteration==6)] <- 5
 
 df$Iteration <- as.factor(df$Iteration)
 
-Dright <- ggplot(df, aes(x = Iteration, y = FDR, col = Method)) + geom_point(stat = "summary", fun = "mean", position = position_dodge(0.8), size = 0.8)+
-  geom_errorbar(stat="summary", fun.data="mean_se", fun.args = list(mult = 1), position = position_dodge(0.8), width = 0.6) + theme_cowplot(12) + background_grid(major = "xy", minor = "none") + scale_colour_manual(values = c("orchid4","steelblue1"))+ geom_hline(yintercept =  0.05, linetype = "dashed") + theme(panel.spacing = unit(1, "lines")) + coord_cartesian(ylim = c(0, 0.05))+ theme(text = element_text(size = 10), axis.title = element_text(size = 11))+ scale_y_continuous(breaks = c(0, 0.05))
+Dright <- ggplot(df, aes(x = Iteration, y = FDR, col = Method)) + geom_point(stat = "summary", fun = "mean", size = 0.8)+
+  geom_errorbar(stat="summary", fun.data="mean_se", fun.args = list(mult = 1), width = 0.6) + theme_cowplot(12) + background_grid(major = "xy", minor = "none") + scale_colour_manual(values = c("orchid4","steelblue1"))+ geom_hline(yintercept =  0.05, linetype = "dashed") + theme(panel.spacing = unit(1, "lines")) + coord_cartesian(ylim = c(0, 0.05))+ theme(text = element_text(size = 10), axis.title = element_text(size = 11))+ scale_y_continuous(breaks = c(0, 0.05))
 
 D_final <- plot_grid(Dleft + theme(legend.position = "none"), Dmid + theme(legend.position = "none"), Dright + theme(legend.position = "none"), nrow = 1)
 
