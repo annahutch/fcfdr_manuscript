@@ -111,7 +111,10 @@ func <- function(){
     
   }
   
-  list(data.frame(data, v_vals, v_vals_emp, q_vals), shared_CVs)
+  # run BL
+  BL_res <- lm_qvalue(p, X = q_vals[,c("q1","q2","q3","q4","q5")])
+  
+  list(data.frame(data, v_vals, v_vals_emp, q_vals, BL_qvals = BL_res$qvalues), shared_CVs)
 }
 
 # additional slurm commands
