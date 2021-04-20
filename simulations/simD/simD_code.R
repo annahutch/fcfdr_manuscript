@@ -95,8 +95,12 @@ func <- function(){
     v_vals[,j+1] <- res$v
     
   }
+                      
+  # run BL
+  BL_res <- lm_qvalue(p, X = q_vals[,c("q1","q2","q3","q4","q5")])
   
-  data.frame(data, v_vals, q_vals)
+  data.frame(data, v_vals, q_vals, BL_qvals = BL_res$qvalues)
+                      
 }
 
 # additional slurm commands
