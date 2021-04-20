@@ -13,6 +13,7 @@ library(bigsplines)
 library(locfdr)
 library(data.table)
 library(fcfdr)
+library(swfdr)
 
 # simulated GWAS data
 files <- list.files(path = "../simulatedGWAS", pattern="*.RDS", full=TRUE)
@@ -93,7 +94,10 @@ func <- function(){
     
   }
   
-  data.frame(data, v_vals, v_vals_emp, q_vals)
+  # run BL
+  BL_res <- lm_qvalue(p, X = q_vals[,c("q1","q2","q3","q4","q5")])
+  
+  data.frame(data, v_vals, v_vals_emp, q_vals, BL_qvals = BL_res$qvalues)
 }
 
 # additional commands for slurm
